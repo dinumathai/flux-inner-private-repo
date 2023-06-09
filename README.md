@@ -13,7 +13,7 @@ resources:
 
 __Problem__ : As of now Kustomization controller(the one handled `Kustomization` CRD objects) of Flux2 does not have option to refer private git repository.
 
-__Solution/Hack__: We are changing the Kustomization controller deployment through helm `values.yaml`. We are running the Kustomization controller process as root user and injecting a file `/root/.gitconfig` - that will replace the private repo URL with basic auth credentials.
+__Solution/Hack__: We can change the Kustomization controller deployment through helm `values.yaml`.  Run the Kustomization controller process as root user and inject a file `/root/.gitconfig` - that will replace the private repo URL with basic auth credentials.
 
 ## How to Install Flux2 ?
 
