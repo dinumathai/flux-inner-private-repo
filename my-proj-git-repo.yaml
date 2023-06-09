@@ -1,0 +1,13 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: my-proj-git-repo
+  namespace: flux-system
+spec:
+  interval: 3m0s
+  timeout: 60s
+  ref:
+    branch: main
+  secretRef:
+    name: azure-repo-auth
+  url: https://myproj@dev.azure.com/myproj/poc/_git/the-overlay-repo # Add proper url

@@ -1,0 +1,19 @@
+# The image-reflector-controller and image-automation-controller 
+# work together to update a Git repository when new container images are available.
+imageAutomationController:
+  create: false
+imageReflectionController:
+  create: false
+
+kustomizeController:
+  securityContext:
+    # running as root user as we are mounting the git config to /root
+    runAsUser: 0
+    seccompProfile:
+      type: RuntimeDefault
+  extraSecretMounts:
+  # Kustomize Controller do no support Private Remote Bases/Resources with HTTPS git url
+  # Hack: Repo credentials to be embedded as git-config 
+  - name: kustomize-controller-git-config
+    secretName: kustomize-controller-git-config
+    mountPath: /root/
